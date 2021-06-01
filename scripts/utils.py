@@ -21,7 +21,7 @@ def write_file(config_path, metadata):
 
 
 def convertcsv_toparquet(df, output_folder):
-    df = df.toDF(*(c.replace('_', '') for c in df.columns))
+    df = df.toDF(*(c.replace('_c', 'column') for c in df.columns))
     df.write.option("header", "true").mode("overwrite").parquet(output_folder)
 
 
