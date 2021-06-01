@@ -17,4 +17,4 @@ error = 400
 spool = True
 file_tab = ''
 idle_time_th_ss = 30
-sleep_ss = 120
+sleep_ss = 30

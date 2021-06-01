@@ -5,13 +5,15 @@ import utils
 import json
 from filelock import FileLock, Timeout
 import constants
+from glob import glob
 
 
 def create_files_metadata_config(input_path, config_path):
     meta = {}
     if not os.path.exists(config_path):
         # config file does not exist
-        for rec in os.listdir(input_path):
+        for rec in glob(constants.input_path + 'con*'):
+            rec = os.path.basename(rec)
             meta[rec] = 0
 
         utils.write_file(config_path, meta)
