@@ -1,10 +1,10 @@
 from multiprocessing.dummy import Pool as ThreadPool
 import os
 import time
-import utils
+from scripts import utils
 import json
 from filelock import FileLock, Timeout
-import constants
+from scripts import constants
 from glob import glob
 
 

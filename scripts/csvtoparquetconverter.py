@@ -1,8 +1,8 @@
 from pyspark.sql import SparkSession
-import utils
+from scripts import utils
 import os
 import json
-import constants
+from scripts import constants
 from glob import glob
 import os
 import time
