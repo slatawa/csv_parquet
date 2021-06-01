@@ -3,10 +3,21 @@ import re
 import traceback
 import multiprocessing
 import os
+import json
 
 
-def read_csv(sparkSession , input_file):
+def read_csv(sparkSession, input_file):
     return sparkSession.read.csv(input_file, sep=',', inferSchema=True)
+
+
+def read_file(config_path):
+    with open(config_path, 'r') as file:
+        return json.load(file)
+
+
+def write_file(config_path, metadata):
+    with open(config_path, 'w') as file:
+        file.write(json.dumps(metadata))
 
 
 def convertcsv_toparquet(df, output_folder):
@@ -42,7 +53,7 @@ def create_dummy_file(sample_data, rows=100000, output_file='stress_test_data.tx
         return True
     except:
         print_exception(create_dummy_file)
-        return False
+        raise
 
 
 def read_in_chunks(file_object, chunk_size=18000):
@@ -69,9 +80,6 @@ def massage_data(input_file, output_file, rec_sep, line_sep, chunk_size):
     '''
     try:
         print('---------- Start: massage_data ----------------')
-        curr_proc = multiprocessing.current_process()
-        print('current process:', curr_proc.name, curr_proc._identity)
-        print(f'file name - {input_file}')
         start_time = time.time()
         # output_file = './/processed//' + os.path.basename(input_file)
         file = open(output_file, "w")
@@ -82,11 +90,12 @@ def massage_data(input_file, output_file, rec_sep, line_sep, chunk_size):
                 file.write(rec)
 
         file.close()
+
         print("--- %s seconds ---" % (time.time() - start_time))
         print('---------- Complete: massage_data ----------------')
         return True
     except:
         print_exception(massage_data)
-        return False
+        raise
 
 
