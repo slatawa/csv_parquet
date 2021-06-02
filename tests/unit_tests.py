@@ -3,12 +3,20 @@ from scripts import csvtoparquetconverter
 from scripts import preprocess_data
 from scripts import constants
 import os
+import time
 
-## Usage from terminal
-## pytest -v ./tests
+# Usage from terminal
+# pytest -v ./tests
+
 
 def test_dummy_file_creation():
-    sample_data = "1012001'~'CEC2017KOSU0053'~'2018-01-13 00:00:00'~'W.P.TRADING CORP'~''~'350 5th Avenue'~'New York'~'New York'~'10118'~'United States'~'44425805'~'KING OCEAN AGENCY INC.'~'Parque Industrial Machangara, Panamericana Norte km 4, Cuenca, Azuay, Ecuador'~''~'Cuenca'~'Azuay'~''~'Ecuador'~'33499873'~'GRAIMAN CIA. LTDA.'~'0190122271001'~''~'A Customs Brokerage, Inc.'~'GUAYAQUIL'~'PORT EVERGLADES'~'United States'~'UNITED STATES OF AMERICA'~''~''~''~''~''~''~'PLANET V'~'Antigua And Barbuda'~'AG'~'PORCELANA'~'31'~'PAQUETES'~'26770'~'STC GLAZED PORCELAIN'~'1'~'0'~''~'KING OCEAN ECUADOR KINGOCEAN S.A.'~'2018-03-20 00:00:00#@#@#"
+    sample_data = "1012001'~'CEC2017KOSU0053'~'2018-01-13 00:00:00'~'W.P.TRADING CORP'~''~'\
+    350 5th Avenue'~'New York'~'New York'~'10118'~'United States'~'44425805'~'KING OCEAN AGENCY INC.\
+    '~'Parque Industrial Machangara, Panamericana Norte km 4, Cuenca, Azuay, Ecuador'~''~'Cuenca'~\
+    'Azuay'~''~'Ecuador'~'33499873'~'GRAIMAN CIA. LTDA.'~'0190122271001'~''~'A Customs Brokerage,\
+     Inc.'~'GUAYAQUIL'~'PORT EVERGLADES'~'United States'~'UNITED STATES OF AMERICA'~''~''~''~''~''~''~'\
+     PLANET V'~'Antigua And Barbuda'~'AG'~'PORCELANA'~'31'~'PAQUETES'~'26770'~'STC GLAZED PORCELAIN'~'1\
+     '~'0'~''~'KING OCEAN ECUADOR KINGOCEAN S.A.'~'2018-03-20 00:00:00#@#@#"
     output_file = 'test_file'
     row = 1000
     result = utils.create_dummy_file(sample_data, rows=row, output_file=output_file)
@@ -18,8 +26,8 @@ def test_dummy_file_creation():
 
 
 def read_write_file():
-    metadata = {'test':1}
-    config_path ='test_read_write_function'
+    metadata = {'test': 1}
+    config_path = 'test_read_write_function'
     utils.write_file(config_path, metadata)
     w_ind = os.path.exists(config_path)
     data = utils.read_file(config_path)

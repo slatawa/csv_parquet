@@ -27,6 +27,11 @@ def get_files_list(input_path, config_path):
     # candidate to be moved out to the calling Job/shell script
     create_files_metadata_config(input_path, config_path)
     # lock config file
+    # create config file to maintain status of
+    # file pre-process this is required as
+    # a centralized metadata of raw files which would be used by nodes
+    # to understand the current status of files
+
     with FileLock(config_path + '.lock', timeout=constants.tmout):
         # fetch config metadata
         metadata = utils.read_file(config_path)
@@ -50,13 +55,9 @@ def update_metadata(file_to_be_migrated, status):
         utils.write_file(constants.config_path, metadata)
 
 
-if __name__ == '__main__':
-    # create config file to maintain status of
-    # file pre-process this is required as
-    # a centralized metadata of raw files which would be used by nodes
-    # to understand the current status of files
+def preprocess_file():
     try:
-        print('---------- Started: Pre-Processing ----------------')
+        print('---------- Started: preprocess_file ----------------')
         start_time = time.time()
         file_to_be_migrated, file_tab = get_files_list(constants.input_path, constants.config_path)
         print(file_tab)
@@ -71,9 +72,15 @@ if __name__ == '__main__':
             file_to_be_migrated, file_tab = get_files_list(constants.input_path, constants.config_path)
         else:
             print("--- %s seconds ---" % (time.time() - start_time))
-            print('---------- Completed: Pre-Processing ----------------')
+            print('---------- Completed: preprocess_file ----------------')
+            return True
     except:
         # error out the files at hand
         if file_tab:
             update_metadata(file_to_be_migrated, constants.error)
-        utils.print_exception('Main: Pre-Processing')
+        utils.print_exception('Main: preprocess_file')
+        return False
+
+
+if __name__ == '__main__':
+    preprocess_file()

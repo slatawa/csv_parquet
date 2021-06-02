@@ -1,0 +1,30 @@
+C:\Users\sanchit.latawa\Desktop\Box\Daas\csv_parquet\Scripts\python.exe C:/Users/sanchit.latawa/Desktop/csv_parquet/tests/integration_test.py
+---------- Start: create_dummy_file ----------------
+--- 0.0 seconds ---
+---------- Complete: create_dummy_file ----------------
+---------- Started: preprocess_file ----------------
+write file success
+[('C:\\Users\\sanchit.latawa\\Desktop\\csv_parquet\\incoming_data\\con_xyz_test_file', 'C:\\Users\\sanchit.latawa\\Desktop\\csv_parquet\\processed\\con_xyz_test_file', "('~')", '#@#@#', 18000)]
+---------- Start: massage_data ----------------
+--- 0.031250953674316406 seconds ---
+---------- Complete: massage_data ----------------
+write file success
+--- 0.053385257720947266 seconds ---
+---------- Completed: preprocess_file ----------------
+---------- Start: convert_csv_parquet ----------------
+Total files to be converted to pqt 1
+Converting file - con_xyz_test_file from csv to pqt
+21/06/02 11:08:21 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+con_xyz_test_file
+1000
+21/06/02 11:08:30 WARN package: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
+Converting file complete- con_xyz_test_file from csv to pqt
+--- 21.62243890762329 seconds ---
+---------- Complete: convert_csv_parquet ----------------
+21/06/02 11:08:34 WARN ProcfsMetricsGetter: Exception when trying to compute pagesize, as a result reporting of ProcessTree metrics is stopped
+Idle time Threshold Breached - exiting
+
+Process finished with exit code 0

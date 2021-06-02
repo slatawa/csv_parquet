@@ -30,9 +30,7 @@ def convert_csv_parquet(files):
     print('---------- Complete: convert_csv_parquet ----------------')
 
 
-if __name__ == '__main__':
-    # this program can be run in polling mode
-    # so as tp be ready for any incoming event
+def convert_to_pqt():
     start_inactive_time = time.time()
     while 1:
         try:
@@ -46,7 +44,14 @@ if __name__ == '__main__':
 
             if (time.time() - start_inactive_time) >= constants.idle_time_th_ss:
                 print('Idle time Threshold Breached - exiting')
-                break
+                return True
         except:
-            utils.print_exception('Main: csvtoparquet')
+            utils.print_exception('convert_to_pqt')
+            return False
+
+
+if __name__ == '__main__':
+    # this program can be run in polling mode
+    # so as tp be ready for any incoming event
+    convert_to_pqt()
 
