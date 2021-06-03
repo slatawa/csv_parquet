@@ -19,9 +19,9 @@ def convert_csv_parquet(files):
         print(f'Converting file - {file} from csv to pqt')
         sc = SparkSession.builder.master('local[*]') \
              .config("spark.driver.memory", "15g").appName('test').getOrCreate()
-        print(file)
+        #print(file)
         df_csv = utils.read_csv(sc, constants.process_path + file)
-        print(df_csv.count())
+        #print(df_csv.count())
         pqt_file = file.replace('.txt','')
         utils.convertcsv_toparquet(df_csv, constants.output_path+pqt_file)
         os.rename(constants.process_path + file, constants.process_path + 'bk_' + file)
