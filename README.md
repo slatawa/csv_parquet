@@ -58,7 +58,7 @@ The final result is put into the ‘parquet’ folder , the csv file post migrat
 
 ## Flow Chart
 
-![img_3.png](img_3.png)
+![img_3.png](./images/img_3.png)
  
 
 
@@ -73,7 +73,7 @@ Tested the solution with 25gb input file and end to end run time is approx. ~~ 6
 AWS Serverless Solution
 Below flow chart shows a possible serverless solution for this requirement by using Glue ETL
 
- ![img_4.png](img_4.png)
+ ![img_4.png](./images/img_4.png)
 
 Other Possible Solutions 
 
